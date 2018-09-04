@@ -1,5 +1,17 @@
 'use strict';
 
+var CLOUD_WIDTH = 420;
+var CLOUD_HEIGHT = 270;
+var CLOUD_X = 100;
+var CLOUD_Y = 10;
+var GAP = 10;
+var COLUMN_GAP = 50;
+var COLUMN_WIDTH = 40;
+var COLUMN_MAX_HEIGHT = 150;
+var NAME_Y = 260;
+var COLUMN_Y = 80;
+var LEFT_MARGIN = (CLOUD_WIDTH - COLUMN_WIDTH * 4 - COLUMN_GAP * 3) / 2;
+
 var getMaxElement = function (array) {
   var maxElement = array[0];
 
@@ -11,19 +23,6 @@ var getMaxElement = function (array) {
 
   return maxElement;
 };
-
-var CLOUD_WIDTH = 420;
-var CLOUD_HEIGHT = 270;
-var CLOUD_X = 100;
-var CLOUD_Y = 10;
-var GAP = 10;
-var COLUMN_GAP = 50;
-var COLUMN_WIDTH = 40;
-var COLUMN_MAX_HEIGHT = 150;
-var NAME_Y = 260;
-var SCORE_Y = 70;
-var COLUMN_Y = 80;
-var LEFT_MARGIN = (CLOUD_WIDTH - COLUMN_WIDTH * 4 - COLUMN_GAP * 3) / 2;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -44,18 +43,30 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
 
-    var currentColumnHeight = (COLUMN_MAX_HEIGHT * times[i]) / maxTime;
-    var randomBlue = Math.floor(Math.random() * 256);
-    var columnColor = 'rgba(0, 0, ' + randomBlue + '' + ', 1)';
+    var currentColumnHeight = function (currentPlayerTime, maxPlayerTime) {
+      return COLUMN_MAX_HEIGHT * currentPlayerTime / maxPlayerTime;
+    };
 
-    if (names[i] === 'Вы') {
-      columnColor = 'rgba(255, 0, 0, 1)';
-    }
+    var currentTimeY = function (currentPlayerTime, maxPlayerTime) {
+      return CLOUD_Y + COLUMN_Y + COLUMN_MAX_HEIGHT - 20 - currentColumnHeight(currentPlayerTime, maxPlayerTime);
+    };
+
+    var randomBlue = Math.floor(Math.random() * 256);
+
+    var columnColor = function (name) {
+
+      if (name === 'Вы') {
+        return 'rgba(255, 0, 0, 1)';
+      }
+
+      return 'rgba(0, 0, ' + randomBlue + ', 1)';
+
+    };
 
     ctx.fillStyle = '#000';
-    ctx.fillText(Math.round(times[i]), CLOUD_X + LEFT_MARGIN + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_Y + SCORE_Y);
-    ctx.fillStyle = columnColor;
-    ctx.fillRect(CLOUD_X + LEFT_MARGIN + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_Y + COLUMN_Y + COLUMN_MAX_HEIGHT - currentColumnHeight, COLUMN_WIDTH, currentColumnHeight);
+    ctx.fillText(Math.round(times[i]), CLOUD_X + LEFT_MARGIN + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_Y + currentTimeY(times[i], maxTime));
+    ctx.fillStyle = columnColor(names[i]);
+    ctx.fillRect(CLOUD_X + LEFT_MARGIN + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_Y + COLUMN_Y + COLUMN_MAX_HEIGHT - currentColumnHeight(times[i], maxTime), COLUMN_WIDTH, currentColumnHeight(times[i], maxTime));
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], CLOUD_X + LEFT_MARGIN + (COLUMN_GAP + COLUMN_WIDTH) * i, NAME_Y);
   }
