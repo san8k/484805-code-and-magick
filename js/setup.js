@@ -17,7 +17,7 @@ var getRandomInt = function (min, max) {
 var characters = [];
 var wizard = {};
 
-var getWizardFeature = function (feature) {
+var getRandomElement = function (feature) {
 
   var index = getRandomInt(0, feature.length - 1);
   return feature[index];
@@ -27,9 +27,9 @@ var getWizardFeature = function (feature) {
 for (var i = 0; i < NUMBER_OF_CHARACTERS; i++) {
 
   wizard = {
-    name: getWizardFeature(NAMES) + ' ' + getWizardFeature(SURNAMES),
-    coatColor: getWizardFeature(COAT_COLORS),
-    eyesColor: getWizardFeature(EYES_COLORS)
+    name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
+    coatColor: getRandomElement(COAT_COLORS),
+    eyesColor: getRandomElement(EYES_COLORS)
   };
 
   characters.push(wizard);
