@@ -11,7 +11,8 @@ var NAMES = [
   'Виктор',
   'Юлия',
   'Люпита',
-  'Вашингтон'];
+  'Вашингтон'
+];
 
 var SURNAMES = [
   'да Марья',
@@ -21,7 +22,8 @@ var SURNAMES = [
   'Онопко',
   'Топольницкая',
   'Нионго',
-  'Ирвинг'];
+  'Ирвинг'
+];
 
 var COAT_COLORS = [
   'rgb(101, 137, 164)',
@@ -29,23 +31,24 @@ var COAT_COLORS = [
   'rgb(146, 100, 161)',
   'rgb(56, 159, 117)',
   'rgb(215, 210, 55)',
-  'rgb(0, 0, 0)'];
+  'rgb(0, 0, 0)'
+];
 
 var EYES_COLORS = [
   'black',
   'red',
   'blue',
   'yellow',
-  'green'];
+  'green'
+];
 
 var FIREBALL_COLORS = [
   '#ee4830',
   '#30a8ee',
   '#5ce6c0',
   '#e848d5',
-  '#e6e848'];
-
-var NUMBER_OF_CHARACTERS = 4;
+  '#e6e848'
+];
 
 var getRandomInt = function (min, max) {
 
@@ -60,12 +63,12 @@ var getRandomElement = function (feature) {
 
 };
 
-var getWizardsArray = function (names, surnames, coatColors, eyesColors) {
+var getWizardsArray = function (names, surnames, coatColors, eyesColors, number) {
 
   var charactersArr = [];
   var wizard = {};
 
-  for (var i = 0; i < NUMBER_OF_CHARACTERS; i++) {
+  for (var i = 0; i < number; i++) {
 
     wizard = {
       name: getRandomElement(names) + ' ' + getRandomElement(surnames),
@@ -80,7 +83,7 @@ var getWizardsArray = function (names, surnames, coatColors, eyesColors) {
 
 };
 
-var characters = getWizardsArray(NAMES, SURNAMES, COAT_COLORS, EYES_COLORS);
+var characters = getWizardsArray(NAMES, SURNAMES, COAT_COLORS, EYES_COLORS, 4);
 
 var wizardTemplate = document.querySelector('#similar-wizard-template')
 .content
@@ -151,7 +154,7 @@ setupOpen.addEventListener('keydown', function (evt) {
 
 setupClose.addEventListener('click', function () {
 
-  setup.classList.add('hidden');
+  closePopup();
 
 });
 
@@ -166,13 +169,16 @@ setupClose.addEventListener('keydown', function (evt) {
 var wizardCoat = setup.querySelector('.wizard-coat');
 var wizardEyes = setup.querySelector('.wizard-eyes');
 var fireball = setup.querySelector('.setup-fireball-wrap');
+var eyesColorValue = setup.querySelector('input[name="eyes-color"]').value;
+var coatColorValue = setup.querySelector('input[name="coat-color"]').value;
+var fireballColorValue = setup.querySelector('input[name="fireball-color"]').value;
 
 
 wizardEyes.addEventListener('click', function () {
 
   var color = getRandomElement(EYES_COLORS);
   wizardEyes.style.fill = color;
-  setup.querySelector('input[name="eyes-color"]').value = wizardEyes.style.fill;
+  eyesColorValue = wizardEyes.style.fill;
 
 });
 
@@ -180,7 +186,7 @@ wizardCoat.addEventListener('click', function () {
 
   var color = getRandomElement(COAT_COLORS);
   wizardCoat.style.fill = color;
-  setup.querySelector('input[name="coat-color"]').value = wizardCoat.style.fill;
+  coatColorValue = wizardCoat.style.fill;
 
 });
 
@@ -188,6 +194,6 @@ fireball.addEventListener('click', function () {
 
   var color = getRandomElement(FIREBALL_COLORS);
   fireball.style.backgroundColor = color;
-  setup.querySelector('input[name="fireball-color"]').value = color;
+  fireballColorValue = color;
 
 });
