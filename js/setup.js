@@ -2,6 +2,10 @@
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var SETUP_DEFAULT_POSITION = {
+  x: '50%',
+  y: '80px'
+};
 
 var NAMES = [
   'Иван',
@@ -128,6 +132,8 @@ var openPopup = function () {
 
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
+  setup.style.top = SETUP_DEFAULT_POSITION.y;
+  setup.style.left = SETUP_DEFAULT_POSITION.x;
 
 };
 
