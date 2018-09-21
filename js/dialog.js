@@ -2,8 +2,7 @@
 
 (function () {
 
-  var setup = document.querySelector('.setup');
-  var dialogHandler = setup.querySelector('.upload');
+  var dialogHandler = window.util.setup.querySelector('.upload');
 
   var onUserPicMouseDown = function (evt) {
 
@@ -30,8 +29,8 @@
         y: moveEvt.clientY
       };
 
-      setup.style.top = (setup.offsetTop - shift.y) + 'px';
-      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
+      window.util.setup.style.top = (window.util.setup.offsetTop - shift.y) + 'px';
+      window.util.setup.style.left = (window.util.setup.offsetLeft - shift.x) + 'px';
 
     };
 
