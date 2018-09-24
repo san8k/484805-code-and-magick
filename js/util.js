@@ -6,48 +6,26 @@
 
   window.util = {
     setup: setupSelector,
-    WIZARDS_NAMES: [
-      'Иван',
-      'Хуан Себастьян',
-      'Мария',
-      'Кристоф',
-      'Виктор',
-      'Юлия',
-      'Люпита',
-      'Вашингтон'
-    ],
-    WIZARDS_SURNAMES: [
-      'да Марья',
-      'Верон',
-      'Мирабелла',
-      'Вальц',
-      'Онопко',
-      'Топольницкая',
-      'Нионго',
-      'Ирвинг'
-    ],
-    COAT_COLORS: [
-      'rgb(101, 137, 164)',
-      'rgb(241, 43, 107)',
-      'rgb(146, 100, 161)',
-      'rgb(56, 159, 117)',
-      'rgb(215, 210, 55)',
-      'rgb(0, 0, 0)'
-    ],
-    EYES_COLORS: [
-      'black',
-      'red',
-      'blue',
-      'yellow',
-      'green'
-    ],
-    FIREBALL_COLORS: [
-      '#ee4830',
-      '#30a8ee',
-      '#5ce6c0',
-      '#e848d5',
-      '#e6e848'
-    ]
+    getMaxElement: function (array) {
+      var maxElement = array[0];
+
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] > maxElement) {
+          maxElement = array[i];
+        }
+      }
+
+      return maxElement;
+    },
+    getRandomInteger: function (min, max) {
+
+      return Math.floor(min + Math.random() * (max - min + 1));
+
+    },
+    getRandomElementOfArray: function (feature) {
+      var index = this.getRandomInteger(0, feature.length - 1);
+      return feature[index];
+    }
   };
 
 })();

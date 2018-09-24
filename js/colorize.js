@@ -6,7 +6,7 @@
 
     element.addEventListener('click', function () {
 
-      var color = window.getRandomElementOfArray(colorsArray);
+      var color = window.util.getRandomElementOfArray(colorsArray);
       if (element.tagName.toLowerCase() === 'div') {
         element.style.backgroundColor = color;
       } else {

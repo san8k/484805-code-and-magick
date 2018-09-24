@@ -12,9 +12,9 @@
       for (var i = 0; i < number; i++) {
 
         wizard = {
-          name: window.getRandomElementOfArray(names) + ' ' + window.getRandomElementOfArray(surnames),
-          coatColor: window.getRandomElementOfArray(coatColors),
-          eyesColor: window.getRandomElementOfArray(eyesColors)
+          name: window.util.getRandomElementOfArray(names) + ' ' + window.util.getRandomElementOfArray(surnames),
+          coatColor: window.util.getRandomElementOfArray(coatColors),
+          eyesColor: window.util.getRandomElementOfArray(eyesColors)
         };
 
         charactersArr.push(wizard);
@@ -24,7 +24,7 @@
 
     };
 
-    var characters = getWizardsArray(window.util.WIZARDS_NAMES, window.util.WIZARDS_SURNAMES, window.util.COAT_COLORS, window.util.EYES_COLORS, 4);
+    var characters = getWizardsArray(window.data.WIZARDS_NAMES, window.data.WIZARDS_SURNAMES, window.data.COAT_COLORS, window.data.EYES_COLORS, 4);
 
     var wizardTemplate = document.querySelector('#similar-wizard-template')
     .content

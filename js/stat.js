@@ -29,7 +29,7 @@
     ctx.fillText('Ура вы победили!', 230, 35);
     ctx.fillText('Список результатов:', 220, 55);
 
-    var maxTime = window.getMaxElement(times);
+    var maxTime = window.util.getMaxElement(times);
 
     for (var i = 0; i < names.length; i++) {
 

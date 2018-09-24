@@ -66,8 +66,8 @@
   var coatColor = window.util.setup.querySelector('input[name="coat-color"]');
   var fireballColor = window.util.setup.querySelector('input[name="fireball-color"]');
 
-  window.colorize(wizardCoat, window.util.COAT_COLORS, coatColor);
-  window.colorize(wizardEyes, window.util.EYES_COLORS, eyesColor);
-  window.colorize(fireball, window.util.FIREBALL_COLORS, fireballColor);
+  window.colorize(wizardCoat, window.data.COAT_COLORS, coatColor);
+  window.colorize(wizardEyes, window.data.EYES_COLORS, eyesColor);
+  window.colorize(fireball, window.data.FIREBALL_COLORS, fireballColor);
 
 })();
