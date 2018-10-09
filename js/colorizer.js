@@ -2,7 +2,7 @@
 
 (function () {
 
-  window.colorize = function (element, colorsArray, associateInput) {
+  window.colorizer = function (element, colorsArray, associateInput) {
 
     element.addEventListener('click', function () {
 
